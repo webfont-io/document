@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: webfont api
+  termsOfService: 'https://webfont.io'
+  contact:
+    email: mail.webfont.io@gmail.com
+    url: 'https://webfont.io/'
+  x-logo:
+    url: logo.png
+  description: >
+    webfont项目 隶属于[apiatm商业联盟](https://www.apiatm.com),联盟下有以下项目推荐：
+
+
+    - [webfont.io 子集化](http://webfont.io/) 将原本需要10MB的字体，按需求分割成几十 至 几百kb的(ttf eot
+    woff woff2)
+
+    - [youziku.com 在线图片生成](http://youziku.com/) 在线字体转图片工具，以及碎片化字体授权。
+
+    # Instraction (简述)
+
+    webfont.io 是专注于在网页上显示子集化字体的项目，将原本需要10MB的字体，按需求分割成几十 至 几百kb
+
+    webfont生成格式：ttf eot woff woff2
+
+    # Get started (快速教程)
+
+    我们提供两种方式来访问webfont.io的服务
+
+    # 1.在线服务方式
+      - 当前方式要求
+servers:
+  - url: 'https://webfont.apiatm.com/v1'
+tags:
+  - name: API Document(API 文档)
+    description: |
+      API 文档用于辅助开发人员快速的使用本系统的集成功能

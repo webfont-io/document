@@ -1,0 +1,307 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "webfont api",
+    "termsOfService": "https://webfont.io",
+    "contact": {
+      "email": "mail.webfont.io@gmail.com",
+      "url": "https://webfont.io/"
+    },
+    "x-logo": {
+      "url": "logo.png"
+    },
+    "description": "webfont项目 隶属于[apiatm商业联盟](https://www.apiatm.com),联盟下有以下项目推荐：\n\n- [webfont.io 子集化](http://webfont.io/) 将原本需要10MB的字体，按需求分割成几十 至 几百kb的(ttf eot woff woff2)\n- [youziku.com 在线图片生成](http://youziku.com/) 在线字体转图片工具，以及碎片化字体授权。\n# Instraction (简述)\nwebfont.io 是专注于在网页上显示子集化字体的项目，将原本需要10MB的字体，按需求分割成几十 至 几百kb\nwebfont生成格式：ttf eot woff woff2\n# Get started (快速教程)\n我们提供两种方式来访问webfont.io的服务\n# 1.在线服务方式\n  - 当前方式要求\n"
+  },
+  "servers": [
+    {
+      "url": "https://webfont.apiatm.com/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "API Document(API 文档)",
+      "description": "API 文档用于辅助开发人员快速的使用本系统的集成功能\n"
+    }
+  ],
+  "paths": {
+    "/fast/FastJSPost": {
+      "post": {
+        "tags": [
+          "API Document(API 文档)"
+        ],
+        "summary": "实时js接口",
+        "description": "realtime",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "response": {
+                    "value": "Hello world!"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "Hello world!"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "string",
+                "example": "Hello world!"
+              }
+            }
+          },
+          "description": "Echo payload",
+          "required": true
+        }
+      }
+    },
+    "/webFont/getFontFace": {
+      "post": {
+        "tags": [
+          "API Document(API 文档)"
+        ],
+        "summary": "GetFontFace",
+        "description": "直接返回所有格式的@fontface",
+        "operationId": "echo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFontFaceResult"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "Code": 200,
+                      "Tag": ".class1",
+                      "ErrorMessage": "",
+                      "FontFamily": "jdshutongtijian",
+                      "FontFace": "@font-face{\n  font-family: 'jdshutongtijian';\n  src: url('http://cdn.webfont.youziku.com/2/xx.gif');\n  src: url('http://cdn.webfont.youziku.com/2/xx.gif?#iefix') format('embedded-opentype'),\n      url('http://cdn.webfont.youziku.com/2/xx.bmp') format('woff'),\n      url('http://cdn.webfont.youziku.com/2/xx.jpg') format('truetype'),\n      url('http://cdn.webfont.youziku.com/2/xx.png#jdshutongtijian') format('svg');\n}\n.class1{font-family:'jdshutongtijian'} \n"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ACCESS DENIED",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResult"
+                },
+                "examples": {
+                  "无法识别": {
+                    "value": {
+                      "Code": 40301,
+                      "ErrorMessage": "服务器无法识别Post参数,请检查代码是否正确！"
+                    }
+                  },
+                  "身份验证": {
+                    "value": {
+                      "Code": 40302,
+                      "ErrorMessage": "无法通过身份验证，请升级会员或检查Apikey是否填写正确!"
+                    }
+                  },
+                  "验证失败": {
+                    "value": {
+                      "Code": 40303,
+                      "ErrorMessage": "无法验证AccessKey，请检查是否填写正确！"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResult"
+                },
+                "examples": {
+                  "错误ID": {
+                    "value": {
+                      "Code": 40401,
+                      "ErrorMessage": "无法找到该FontId对应的字体，请检查是否输入正确！"
+                    }
+                  },
+                  "禁用字体": {
+                    "value": {
+                      "Code": 40402,
+                      "ErrorMessage": "无法找到该FontId对应的字体，请检查是否输入正确！"
+                    }
+                  },
+                  "未同意托管协议": {
+                    "value": {
+                      "Code": 40403,
+                      "ErrorMessage": "无法提供未同意托管协议的字体的服务，请选择其他字体！"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL SERVER ERROR",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResult"
+                },
+                "examples": {
+                  "D繁忙": {
+                    "value": {
+                      "Code": 50001,
+                      "ErrorMessage": "D系统繁忙，请稍后再试!"
+                    }
+                  },
+                  "S繁忙": {
+                    "value": {
+                      "Code": 50002,
+                      "ErrorMessage": "S系统繁忙，请稍后再试!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ApiKey": {
+                    "type": "string",
+                    "description": "系统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。 从后台获取：www.youziku.com/apiKey/index"
+                  },
+                  "AccessKey": {
+                    "type": "string",
+                    "description": "系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load 语句中第2个参数即为AccessKey。例如：$youziku.load(\"#id1\",\"128c10eec9b647288c01e4f95a1f864e\",\"fontanme\");"
+                  },
+                  "Content": {
+                    "type": "string",
+                    "description": "要生成字体的文字内容"
+                  },
+                  "Tag": {
+                    "type": "string",
+                    "description": "选择器（标签的class名或id名）不填写则直接返回纯@font-face语句，用户需同时获取另一返回值(FontFamily)，将FontFamily的值设置到对应标签下，方能生效；填写则返回已设置到对应标签下的完整语句，自动生效。"
+                  },
+                  "UseRanFontFamily": {
+                    "type": "boolean",
+                    "description": "是否使用随机产生的font-family。默认值为false(使用原生font-family)。同一个页面上，每个@font-face语句中的font-family值必须唯一。如果有重复，则重复的@font-face语句中只有最后一个有效。随机font-family则可以有效防止font-family值重复。"
+                  }
+                },
+                "example": {
+                  "ApiKey": "xxx",
+                  "AccessKey": "xxx",
+                  "Content": "sdasd",
+                  "Tag": ".class1",
+                  "UseRanFontFamily": false
+                },
+                "required": [
+                  "ApiKey",
+                  "AccessKey",
+                  "Content"
+                ]
+              }
+            }
+          },
+          "description": "Echo payload",
+          "required": true
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResult": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "description": "状态码",
+            "type": "integer",
+            "minLength": 1,
+            "example": 200
+          },
+          "ErrorMessage": {
+            "description": "错误消息",
+            "minLength": 1,
+            "type": "string",
+            "example": ""
+          }
+        }
+      },
+      "GetFontFaceResult": {
+        "type": "object",
+        "properties": {
+          "FontFamily": {
+            "description": "系统生成的FontFamily",
+            "type": "string",
+            "example": "jdshutongtijian"
+          },
+          "FontFace": {
+            "description": "选择器对应的@fontface语句",
+            "type": "string",
+            "minLength": 1,
+            "example": "@font-face{font-family:'jdshutongtijian';src:url('data:image/bmp;base64,d09GRgABAAAAABfcAA4AAAAAIjwAA…') format('woff');}"
+          },
+          "Code": {
+            "description": "状态码",
+            "type": "integer",
+            "minLength": 1,
+            "example": 200
+          },
+          "Tag": {
+            "description": "选择器(与提交的参数对应)",
+            "type": "string",
+            "example": ".class"
+          },
+          "ErrorMessage": {
+            "description": "错误消息",
+            "type": "string",
+            "example": ""
+          }
+        }
+      }
+    },
+    "headers": {
+      "ExpiresAfter": {
+        "description": "date in UTC when token expires",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
