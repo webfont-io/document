@@ -1,0 +1,8 @@
+
+apiTitle: webfont
+splitSpec: true
+codeSamples: true
+swaggerUI: true
+travis: true
+repo: webfont-io/document
+oasVersion: 3.0.0

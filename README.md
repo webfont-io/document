@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+# webfont OpenAPI Specification
+[![Build Status](https://travis-ci.com/webfont-io/document.svg?branch=master)](https://travis-ci.com/webfont-io/document)
+## Steps to finish
 
-You can use the [editor on GitHub](https://github.com/webfont-io/document/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+1. Enable [Travis](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A) for your repository (**note**: you already have `.travis.yml` file)
+1. [Create GitHub access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/); select `public_repo` on `Select scopes` section.
+1. Use the token value as a value for [Travis environment variable](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) with the name `GH_TOKEN`
+1. Make a test commit to trigger CI: `git commit --allow-empty -m "Test Travis CI" && git push`
+1. Wait until Travis build is finished. You can check progress by clicking on the `Build Status` badge at the top
+1. **[Optional]** You can setup [custom domain](https://help.github.com/articles/using-a-custom-domain-with-github-pages/) (just create `web/CNAME` file)
+1. **[Optional]** If your API is public consider adding it into [APIs.guru](https://APIs.guru) directory using [this form](https://apis.guru/add-api/).
+1. Delete this section ❌
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Links
 
-### Markdown
+- [Reference Documentation (ReDoc)](https://webfont-io.github.io/document/)
+- [SwaggerUI](https://webfont-io.github.io/document/swagger-ui/)
+- OpenAPI Raw Files: [JSON](https://webfont-io.github.io/document/openapi.json) [YAML](https://webfont-io.github.io/document/openapi.yaml)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**Warning:** All above links are updated only after Travis CI finishes deployment
 
-```markdown
-Syntax highlighted code block
+## Working on specification
+### Install
 
-# Header 1
-## Header 2
-### Header 3
+1. Install [Node JS](https://nodejs.org/)
+2. Clone repo and run `npm install` in the repo root
 
-- Bulleted
-- List
+### Usage
 
-1. Numbered
-2. List
+#### `npm start`
+Starts the development server.
 
-**Bold** and _Italic_ and `Code` text
+#### `npm run build`
+Bundles the spec and prepares web_deploy folder with static assets.
 
-[Link](url) and ![Image](src)
-```
+#### `npm test`
+Validates the spec.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/webfont-io/document/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+#### `npm run gh-pages`
+Deploys docs to GitHub Pages. You don't need to run it manually if you have Travis CI configured.
