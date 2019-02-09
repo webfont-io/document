@@ -1,5 +1,5 @@
 # webfont OpenAPI Specification
-[![Build Status](https://travis-ci.com/webfont-io/document.svg?branch=master)](https://travis-ci.com/webfont-io/document)
+[![Build Status](https://travis-ci.com/webfont-io/document.svg?branch=v1)](https://travis-ci.com/webfont-io/document)
 ## Steps to finish
 
 1. Enable [Travis](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A) for your repository (**note**: you already have `.travis.yml` file)
