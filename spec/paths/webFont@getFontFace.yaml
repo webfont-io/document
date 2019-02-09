@@ -1,6 +1,10 @@
 post:
+  tags:
+    - API Document(API 文档)
   summary: GetFontFace
-  description: 直接返回所有格式的@fontface
+  description: |
+    直接返回所有格式的@fontface
+    - asdad
   operationId: echo
   responses:
     '200':
@@ -13,15 +17,19 @@ post:
             response:
               value:
                 Code: 200
-                Tag: ''
+                Tag: .class1
                 ErrorMessage: ''
                 FontFamily: jdshutongtijian
-                FontFace: >-
-                  @font-face{font-family:
-                  'jdshutongtijian';src:url('http://cdn.webfont.youziku.com/2/xx.gif');src:url('http://cdn.webfont.youziku.com/2/xx.gif?#iefix')format('embedded-opentype'),url('http://cdn.webfont.youziku.com/2/xx.bmp')
-                  format('woff'),url('http://cdn.webfont.youziku.com/2/xx.jpg')
-                  format('truetype'),url('http://cdn.webfont.youziku.com/2/xx.png#jdshutongtijian')
-                  format('svg');}. class1{font-family:'jdshutongtijian'} 
+                FontFace: |
+                  @font-face{
+                    font-family: 'jdshutongtijian';
+                    src: url('http://cdn.webfont.youziku.com/2/xx.gif');
+                    src: url('http://cdn.webfont.youziku.com/2/xx.gif?#iefix') format('embedded-opentype'),
+                        url('http://cdn.webfont.youziku.com/2/xx.bmp') format('woff'),
+                        url('http://cdn.webfont.youziku.com/2/xx.jpg') format('truetype'),
+                        url('http://cdn.webfont.youziku.com/2/xx.png#jdshutongtijian') format('svg');
+                  }
+                  .class1{font-family:'jdshutongtijian'} 
     '403':
       description: ACCESS DENIED
       content:
@@ -29,14 +37,18 @@ post:
           schema:
             $ref: '#/components/schemas/ErrorResult'
           examples:
-            response:
+            无法识别:
               value:
-                Code: 403
-                ErrorMessage: |-
-
-                  有字库服务器无法识别Post参数,请检查代码是否正确！
-                  有字库无法通过身份验证，请升级会员或检查Apikey是否填写正确!
-                  有字库无法验证AccessKey，请检查是否填写正确！
+                Code: 40301
+                ErrorMessage: '服务器无法识别Post参数,请检查代码是否正确！'
+            身份验证:
+              value:
+                Code: 40302
+                ErrorMessage: 无法通过身份验证，请升级会员或检查Apikey是否填写正确!
+            验证失败:
+              value:
+                Code: 40303
+                ErrorMessage: 无法验证AccessKey，请检查是否填写正确！
     '404':
       description: NOT FOUND
       content:
@@ -44,14 +56,18 @@ post:
           schema:
             $ref: '#/components/schemas/ErrorResult'
           examples:
-            response:
+            错误ID:
               value:
-                Code: 404
-                ErrorMessage: |-
-
-                  有字库服务器无法找到该FontId对应的字体，请检查是否输入正确！
-                  有字库服务器无法提供被禁用字体的服务，请选择其他字体！
-                  有字库服务器无法提供未同意托管协议的字体的服务，请选择其他字体！
+                Code: 40401
+                ErrorMessage: 无法找到该FontId对应的字体，请检查是否输入正确！
+            禁用字体:
+              value:
+                Code: 40402
+                ErrorMessage: 无法找到该FontId对应的字体，请检查是否输入正确！
+            未同意托管协议:
+              value:
+                Code: 40403
+                ErrorMessage: 无法提供未同意托管协议的字体的服务，请选择其他字体！
     '500':
       description: INTERNAL SERVER ERROR
       content:
@@ -59,45 +75,50 @@ post:
           schema:
             $ref: '#/components/schemas/ErrorResult'
           examples:
-            response:
+            D繁忙:
               value:
-                Code: 500
-                ErrorMessage: |-
-
-                  有字库D系统繁忙，请稍后再试!
-                  有字库S系统繁忙，请稍后再试!
-  parameters:
-    - name: ApiKey
-      in: query
-      description: >-
-        统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。
-        从后台获取：www.youziku.com/apiKey/index
-      required: true
-      schema:
-        type: string
-    - name: AccessKey
-      in: query
-      description: >-
-        系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load
-        语句中第2个参数即为AccessKey。例如：$youziku.load("#id1","128c10eec9b647288c01e4f95a1f864e","fontanme");
-      required: true
-      schema:
-        type: string
-    - name: Content
-      in: query
-      description: 要生成字体的文字内容
-      required: true
-      schema:
-        type: string
-    - name: Tag
-      in: query
-      description: >-
-        选择器（标签的class名或id名）不填写则直接返回纯@font-face语句，用户需同时获取另一返回值(FontFamily)，将FontFamily的值设置到对应标签下，方能生效；填写则返回已设置到对应标签下的完整语句，自动生效。
-      schema:
-        type: boolean
-    - name: UseRanFontFamily
-      in: query
-      description: >-
-        是否使用随机产生的font-family。默认值为false(使用原生font-family)。同一个页面上，每个@font-face语句中的font-family值必须唯一。如果有重复，则重复的@font-face语句中只有最后一个有效。随机font-family则可以有效防止font-family值重复。
-      schema:
-        type: boolean
+                Code: 50001
+                ErrorMessage: D系统繁忙，请稍后再试!
+            S繁忙:
+              value:
+                Code: 50002
+                ErrorMessage: S系统繁忙，请稍后再试!
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            ApiKey:
+              type: string
+              description: >-
+                系统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。
+                从后台获取：www.youziku.com/apiKey/index
+            AccessKey:
+              type: string
+              description: >-
+                系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load
+                语句中第2个参数即为AccessKey。例如：$youziku.load("#id1","128c10eec9b647288c01e4f95a1f864e","fontanme");
+            Content:
+              type: string
+              description: 要生成字体的文字内容
+            Tag:
+              type: string
+              description: >-
+                选择器（标签的class名或id名）不填写则直接返回纯@font-face语句，用户需同时获取另一返回值(FontFamily)，将FontFamily的值设置到对应标签下，方能生效；填写则返回已设置到对应标签下的完整语句，自动生效。
+            UseRanFontFamily:
+              type: boolean
+              description: >-
+                是否使用随机产生的font-family。默认值为false(使用原生font-family)。同一个页面上，每个@font-face语句中的font-family值必须唯一。如果有重复，则重复的@font-face语句中只有最后一个有效。随机font-family则可以有效防止font-family值重复。
+          example:
+            ApiKey: xxx
+            AccessKey: xxx
+            Content: sdasd
+            Tag: .class1
+            UseRanFontFamily: false
+          required:
+            - ApiKey
+            - AccessKey
+            - Content
+    description: Echo payload
+    required: true

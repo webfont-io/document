@@ -8,3 +8,5 @@ docker:
 	@docker build -t hkloudou/document.webfont.io .
 run:
 	docker run --rm -it -p 80:80 hkloudou/document.webfont.io:latest
+g:
+	docker run --rm -v ${GOPATH}/src/github.com/webfont-io/xx/:/local/ swaggerapi/swagger-codegen-cli:unstable generate -i http://zito-dyb-htmlcode.oss-cn-hangzhou.aliyuncs.com/t/openapi.json -l go -o /local/

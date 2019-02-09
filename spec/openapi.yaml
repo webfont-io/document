@@ -17,11 +17,21 @@ info:
 
     - [youziku.com 在线图片生成](http://youziku.com/) 在线字体转图片工具，以及碎片化字体授权。
 
-    # 简介
+    # Instraction (简述)
 
     webfont.io 是专注于在网页上显示子集化字体的项目，将原本需要10MB的字体，按需求分割成几十 至 几百kb
 
     webfont生成格式：ttf eot woff woff2
+
+    # Get started (快速教程)
+
+    我们提供两种方式来访问webfont.io的服务
+
+    # 1.在线服务方式
+      - 当前方式要求
 servers:
-  - url: 'http://webfont.apiatm.com/v1'
   - url: 'https://webfont.apiatm.com/v1'
+tags:
+  - name: API Document(API 文档)
+    description: |
+      API 文档用于辅助开发人员快速的使用本系统的集成功能

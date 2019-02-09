@@ -1,4 +1,6 @@
 post:
+  tags:
+    - API Document(API 文档)
   summary: 实时js接口
   description: realtime
   responses:
