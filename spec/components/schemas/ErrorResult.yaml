@@ -1,0 +1,12 @@
+type: object
+properties:
+  Code:
+    description: 状态码
+    type: integer
+    minLength: 1
+    example: 200
+  ErrorMessage:
+    description: 错误消息
+    minLength: 1
+    type: string
+    example: ''

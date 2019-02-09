@@ -12,24 +12,73 @@ post:
             response:
               value:
                 Code: 200
-                Tag: ""
-                ErrorMessage: ""
-                FontFamily: "jdshutongtijian"
-                FontFace: "@font-face{font-family:'jdshutongtijian';src:url('data:image/bmp;base64,d09GRgABAAAAABfcAA4AAAAAIjwAA…') format('woff');}"
+                Tag: ''
+                ErrorMessage: ''
+                FontFamily: jdshutongtijian
+                FontFace: >-
+                  @font-face{font-family:
+                  'jdshutongtijian';src:url('http://cdn.webfont.youziku.com/2/xx.gif');src:url('http://cdn.webfont.youziku.com/2/xx.gif?#iefix')format('embedded-opentype'),url('http://cdn.webfont.youziku.com/2/xx.bmp')
+                  format('woff'),url('http://cdn.webfont.youziku.com/2/xx.jpg')
+                  format('truetype'),url('http://cdn.webfont.youziku.com/2/xx.png#jdshutongtijian')
+                  format('svg');}. class1{font-family:'jdshutongtijian'} 
     '403':
-      description: Forbidden
+      description: ACCESS DENIED
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+          examples:
+            response:
+              value:
+                Code: 403
+                ErrorMessage: |-
+
+                  有字库服务器无法识别Post参数,请检查代码是否正确！
+                  有字库无法通过身份验证，请升级会员或检查Apikey是否填写正确!
+                  有字库无法验证AccessKey，请检查是否填写正确！
     '404':
-      description: User not found
+      description: NOT FOUND
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+          examples:
+            response:
+              value:
+                Code: 404
+                ErrorMessage: |-
+
+                  有字库服务器无法找到该FontId对应的字体，请检查是否输入正确！
+                  有字库服务器无法提供被禁用字体的服务，请选择其他字体！
+                  有字库服务器无法提供未同意托管协议的字体的服务，请选择其他字体！
+    '500':
+      description: INTERNAL SERVER ERROR
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+          examples:
+            response:
+              value:
+                Code: 500
+                ErrorMessage: |-
+
+                  有字库D系统繁忙，请稍后再试!
+                  有字库S系统繁忙，请稍后再试!
   parameters:
     - name: ApiKey
       in: query
-      description: 统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。 从后台获取：www.youziku.com/apiKey/index
+      description: >-
+        统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。
+        从后台获取：www.youziku.com/apiKey/index
       required: true
       schema:
         type: string
     - name: AccessKey
       in: query
-      description: 系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load 语句中第2个参数即为AccessKey。例如：$youziku.load("#id1","128c10eec9b647288c01e4f95a1f864e","fontanme");
+      description: >-
+        系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load
+        语句中第2个参数即为AccessKey。例如：$youziku.load("#id1","128c10eec9b647288c01e4f95a1f864e","fontanme");
       required: true
       schema:
         type: string
