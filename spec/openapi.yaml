@@ -22,9 +22,6 @@ info:
     webfont.io 是专注于在网页上显示子集化字体的项目，将原本需要10MB的字体，按需求分割成几十 至 几百kb
 
     webfont生成格式：ttf eot woff woff2
-tags:
-  - name: User
-    description: Operations about user
 servers:
   - url: 'http://webfont.apiatm.com/v1'
   - url: 'https://webfont.apiatm.com/v1'

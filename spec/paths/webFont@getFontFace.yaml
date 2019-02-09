@@ -1,6 +1,7 @@
 post:
   summary: GetFontFace
   description: 直接返回所有格式的@fontface
+  operationId: echo
   responses:
     '200':
       description: OK

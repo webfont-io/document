@@ -4,14 +4,6 @@ post:
   responses:
     '200':
       description: OK
-      headers:
-        X-Rate-Limit:
-          description: calls per hour allowed by the user
-          schema:
-            type: integer
-            format: int32
-        X-Expires-After:
-          $ref: '#/components/headers/ExpiresAfter'
       content:
         application/json:
           schema:
