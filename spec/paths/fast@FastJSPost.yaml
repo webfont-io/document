@@ -1,15 +1,17 @@
 post:
-  tags:
-    - Echo
-  summary: Echo test
-  description: Receive the exact message you've sent
-  operationId: echo
-  security:
-    - api_key: []
-    - basic_auth: []
+  summary: 实时js接口
+  description: realtime
   responses:
     '200':
       description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user
+          schema:
+            type: integer
+            format: int32
+        X-Expires-After:
+          $ref: '#/components/headers/ExpiresAfter'
       content:
         application/json:
           schema:

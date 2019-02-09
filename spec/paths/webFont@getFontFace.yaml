@@ -1,0 +1,53 @@
+post:
+  summary: GetFontFace
+  description: 直接返回所有格式的@fontface
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetFontFaceResult'
+          examples:
+            response:
+              value:
+                Code: 200
+                Tag: ""
+                ErrorMessage: ""
+                FontFamily: "jdshutongtijian"
+                FontFace: "@font-face{font-family:'jdshutongtijian';src:url('data:image/bmp;base64,d09GRgABAAAAABfcAA4AAAAAIjwAA…') format('woff');}"
+    '403':
+      description: Forbidden
+    '404':
+      description: User not found
+  parameters:
+    - name: ApiKey
+      in: query
+      description: 统规定参数，每个用户有一个固定ApiKey，用于用户身份验证，使用时请注意保密，防止被盗用。 从后台获取：www.youziku.com/apiKey/index
+      required: true
+      schema:
+        type: string
+    - name: AccessKey
+      in: query
+      description: 系统规定参数，从有字库字体使用页中“卢教”模式中获取，$youziku.load 语句中第2个参数即为AccessKey。例如：$youziku.load("#id1","128c10eec9b647288c01e4f95a1f864e","fontanme");
+      required: true
+      schema:
+        type: string
+    - name: Content
+      in: query
+      description: 要生成字体的文字内容
+      required: true
+      schema:
+        type: string
+    - name: Tag
+      in: query
+      description: >-
+        选择器（标签的class名或id名）不填写则直接返回纯@font-face语句，用户需同时获取另一返回值(FontFamily)，将FontFamily的值设置到对应标签下，方能生效；填写则返回已设置到对应标签下的完整语句，自动生效。
+      schema:
+        type: boolean
+    - name: UseRanFontFamily
+      in: query
+      description: >-
+        是否使用随机产生的font-family。默认值为false(使用原生font-family)。同一个页面上，每个@font-face语句中的font-family值必须唯一。如果有重复，则重复的@font-face语句中只有最后一个有效。随机font-family则可以有效防止font-family值重复。
+      schema:
+        type: boolean

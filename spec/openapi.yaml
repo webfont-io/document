@@ -6,40 +6,23 @@ info:
   contact:
     email: mail.webfont.io@gmail.com
     url: 'https://webfont.io/'
-  license:
-    name: GNU
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://apis.guru/openapi-template/logo.png'
+    url: logo.png
   description: >
+    webfont项目 隶属于[apiatm商业联盟](https://www.apiatm.com),联盟下有以下项目推荐：
+
+
+    - [webfont.io 子集化](http://webfont.io/) 将原本需要10MB的字体，按需求分割成几十 至 几百kb的(ttf eot
+    woff woff2)
+
+    - [youziku.com 在线图片生成](http://youziku.com/) 在线字体转图片工具，以及碎片化字体授权。
 
     # 简介
 
-    webfont.io 是专注于在网页上显示子集化字体的项目，
+    webfont.io 是专注于在网页上显示子集化字体的项目，将原本需要10MB的字体，按需求分割成几十 至 几百kb
 
-
-    # api 详情
-
-    The goal of The OpenAPI Specification is to define a standard,
-    language-agnostic interface to REST APIs which
-
-    allows both humans and computers to discover and understand the capabilities
-    of the service without access to source
-
-    code, documentation, or through network traffic inspection. When properly
-    defined via OpenAPI, a consumer can 
-
-    understand and interact with the remote service with a minimal amount of
-    implementation logic. Similar to what
-
-    interfaces have done for lower-level programming, OpenAPI removes the
-    guesswork in calling the service.
-externalDocs:
-  description: webfont官方网站
-  url: 'https://webfont.io/'
+    webfont生成格式：ttf eot woff woff2
 tags:
-  - name: Echo
-    description: Example echo operations
   - name: User
     description: Operations about user
 servers:

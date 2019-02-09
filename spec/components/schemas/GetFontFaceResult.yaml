@@ -1,0 +1,25 @@
+type: object
+properties:
+  FontFamily:
+    description: 系统生成的FontFamily
+    type: string
+    #minLength: 4
+    example: "jdshutongtijian"
+  FontFace:
+    description: 选择器对应的@fontface语句
+    type: string
+    minLength: 1
+    example: "@font-face{font-family:'jdshutongtijian';src:url('data:image/bmp;base64,d09GRgABAAAAABfcAA4AAAAAIjwAA…') format('woff');}"
+  Code:
+    description: 状态码
+    type: int
+    minLength: 1
+    example: 200
+  Tag:
+    description: 选择器(与提交的参数对应)
+    type: string
+    example: ".class"
+  ErrorMessage:
+    description: 错误消息
+    type: string
+    example: ""
